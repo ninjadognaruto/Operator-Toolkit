@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TurboTax Expert Assist Homepage — Opportunity PRD</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 60px 24px 120px;
+    }
+
+    .doc {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .doc-header {
+      border-bottom: 2px solid #1a1a1a;
+      padding-bottom: 24px;
+      margin-bottom: 48px;
+    }
+
+    .doc-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .doc-meta {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* Section headings */
+    h2 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #888;
+      margin-top: 56px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-top: 32px;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+    }
+
+    h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: #333;
+    }
+
+    /* Summary block */
+    .summary-block {
+      background: #f7f7f7;
+      border-left: 4px solid #1a1a1a;
+      padding: 20px 24px;
+      margin-bottom: 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .summary-block p {
+      margin-bottom: 0;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* Problem statements */
+    .problem {
+      border: 1px solid #e8e8e8;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+
+    .problem-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .problem-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .problem-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .evidence-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .evidence-box {
+      background: #f9f9f9;
+      border-radius: 4px;
+      padding: 14px 16px;
+    }
+
+    .evidence-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #444;
+      font-size: 13px;
+      line-height: 1.55;
+      border-left: 3px solid #ddd;
+      padding-left: 12px;
+      margin-top: 6px;
+    }
+
+    .quote + .quote { margin-top: 10px; }
+
+    .evidence-box p {
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 0;
+    }
+
+    /* Opportunities */
+    .opportunity {
+      border: 1px solid #e8e8e8;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-bottom: 14px;
+    }
+
+    .opp-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .opp-rank {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ddd;
+      min-width: 30px;
+    }
+
+    .opp-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+      background: #f0f0f0;
+      color: #555;
+      margin-right: 4px;
+    }
+
+    .tag.copy { background: #e8f4fd; color: #1a6fa3; }
+    .tag.ux { background: #fef3e2; color: #b45309; }
+    .tag.reward { background: #f0fdf4; color: #166534; }
+    .tag.competitive { background: #fdf4ff; color: #7e22ce; }
+
+    .opp-body { font-size: 14px; color: #444; line-height: 1.6; }
+
+    /* Requirements table */
+    .req-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .req-table thead tr {
+      background: #f4f4f4;
+    }
+
+    .req-table th {
+      text-align: left;
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #666;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .req-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: top;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .req-table tr:last-child td { border-bottom: none; }
+
+    .priority {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .p0 { background: #fef2f2; color: #b91c1c; }
+    .p1 { background: #fff7ed; color: #c2410c; }
+    .p2 { background: #f0fdf4; color: #166534; }
+
+    /* Competitive table */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 16px;
+    }
+
+    .comp-table th {
+      text-align: left;
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #666;
+      background: #f4f4f4;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .comp-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: top;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .comp-table tr:last-child td { border-bottom: none; }
+
+    .better { color: #166534; font-weight: 600; }
+    .worse { color: #b91c1c; font-weight: 600; }
+
+    /* Open questions */
+    .question {
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .question:last-child { border-bottom: none; }
+
+    .q-text { font-size: 14px; color: #333; }
+
+    .q-owner {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: #f0f0f0;
+      color: #666;
+      padding: 3px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .blocking { background: #fef2f2; color: #b91c1c; }
+
+    /* Footer */
+    .doc-footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid #e8e8e8;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- Header -->
+  <div class="doc-header">
+    <div class="doc-label">Product Opportunity PRD</div>
+    <h1>TurboTax Expert Assist — Homepage Conversion Opportunities</h1>
+    <div class="doc-meta">March 21, 2026 &nbsp;·&nbsp; Scope: Homepage landing page &nbsp;·&nbsp; Product: Expert Assist (formerly TurboTax Live)</div>
+  </div>
+
+  <!-- Summary -->
+  <h2>Summary</h2>
+  <div class="summary-block">
+    <p>The Expert Assist homepage has five critical conversion barriers: an anxiety-ignoring hero, buried expert credentials, product tier confusion, pricing opacity, and a sign-up flow that severs the brand experience entirely. Qual research confirms users are routinely surprised by pricing, confused about product tiers, and emotionally abandoned at the moment they decide to proceed. Competitors — particularly TaxAct — are winning on explicit credential transparency and upfront pricing that TurboTax doesn't match on its landing page. These five opportunities require no backend changes and represent the highest-leverage surface area available to the Expert Assist team in the current tax season.</p>
+  </div>
+
+  <!-- Context -->
+  <h2>Context</h2>
+  <p>Expert Assist (previously marketed as TurboTax Live) is TurboTax's guided tax filing product — positioned between DIY software and full-service tax preparation. Users file their own return but can access live tax experts for help throughout the process, culminating in an expert final review before submission.</p>
+  <p>The homepage analyzed is the primary acquisition surface for Expert Assist. It carries the full weight of communicating what the product is, why it's worth paying for, and why the user should trust TurboTax with their taxes over competitors or a local CPA. The analysis was conducted on the live page as of March 2026 via screen recording, supplemented by Reddit/forum qualitative research and competitive analysis of H&R Block Tax Pro Review, FreeTaxUSA Pro Support, and TaxAct Xpert Assist.</p>
+
+  <!-- Customer Problems -->
+  <h2>Customer Problems</h2>
+
+  <div class="problem">
+    <div class="problem-header">
+      <span class="problem-num">Problem 1</span>
+      <span class="problem-title">Users land in a high-anxiety state and the hero doesn't address it</span>
+    </div>
+    <p style="font-size:14px; color:#444; margin-bottom:0;">Tax filing is one of the highest-anxiety annual financial tasks consumers face. Users arrive asking "what if I mess this up?" and "is this safe?" — not "how do I file confidently?" The current hero leads with aspiration ("File confidently with experts by your side") and doesn't answer the first psychological question anxious users need resolved before they'll act.</p>
+    <div class="evidence-row">
+      <div class="evidence-box">
+        <div class="evidence-label">Qual Evidence</div>
+        <div class="quote">"I was concerned about all the new things I needed to do this year — opening my own business, investing in stocks. The list was huge."</div>
+        <div class="quote">"TurboTax calculated federal and state taxes at $3,800 owed, while their accountant found only $700 owed." (User explaining post-filing anxiety that drove them to a CPA)</div>
+      </div>
+      <div class="evidence-box">
+        <div class="evidence-label">Competitive Context</div>
+        <p>TaxAct's Xpert Assist page leads with "Two ways to file, one goal: peace of mind" — directly naming the emotional outcome. H&R Block's Tax Pro Review positions around error prevention ("your return reviewed for errors, omissions, and optimization opportunities") rather than confidence aspiration. Both are more anxiety-resolving than "file confidently."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="problem">
+    <div class="problem-header">
+      <span class="problem-num">Problem 2</span>
+      <span class="problem-title">Pricing is opaque until it's too late — generating anger, not trust</span>
+    </div>
+    <p style="font-size:14px; color:#444; margin-bottom:0;">The most common complaint theme across Reddit and TurboTax community forums is sticker shock: users begin with an advertised price and end with a number 3–7x higher. Expert Assist charges are frequently unexpected, applied even when users don't use the service, and discovered at checkout — not at the top of the page.</p>
+    <div class="evidence-row">
+      <div class="evidence-box">
+        <div class="evidence-label">Qual Evidence</div>
+        <div class="quote">"Lured in with an agreeable price of about $40 but the total at the end is $303."</div>
+        <div class="quote">"I was charged for TurboTax Online Expert Assist Premium 2025. I didn't request these services, nor was I provided them."</div>
+        <div class="quote">"Nearly $200 for something they never used because it was a trap."</div>
+      </div>
+      <div class="evidence-box">
+        <div class="evidence-label">Competitive Context</div>
+        <p>TaxAct shows "Starting at $45" on the Xpert Assist landing page hero. FreeTaxUSA shows "$64.99" for Pro Support prominently before any sign-up. H&R Block is currently running a free Tax Pro Review promo — removing the pricing concern entirely for new users. TurboTax has no visible price anchor on the Expert Assist homepage.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="problem">
+    <div class="problem-header">
+      <span class="problem-num">Problem 3</span>
+      <span class="problem-title">Expert Assist vs. Expert Full Service confusion is causing users to choose wrong — or leave</span>
+    </div>
+    <p style="font-size:14px; color:#444; margin-bottom:0;">The TurboTax product architecture (DIY / Expert Assist / Expert Full Service) is not explained anywhere on the Expert Assist homepage before users encounter an upsell mid-scroll. Forum data shows users regularly end up in the wrong tier — paying for Expert Assist when they wanted DIY, or enrolled in Full Service without understanding what they committed to.</p>
+    <div class="evidence-row">
+      <div class="evidence-box">
+        <div class="evidence-label">Qual Evidence</div>
+        <div class="quote">"How do I switch from Expert Assist to Do it yourself? I didn't want or choose this upcharge."</div>
+        <div class="quote">"All of the 'do it yourself' options are grayed out." (User unable to downgrade after Expert Assist enrollment)</div>
+        <div class="quote">"TurboTax ropes the novice user into starting off the bat using the expensive option." (Forum discussion)</div>
+      </div>
+      <div class="evidence-box">
+        <div class="evidence-label">Competitive Context</div>
+        <p>TaxAct is explicit: "Two ways to file" — DIY with Expert Help ($45) or Xpert Full Service ($99) — differentiated on a single page with a clear comparison. FreeTaxUSA shows a feature matrix comparing Deluxe vs. Pro Support upfront. The TurboTax Expert Assist page doesn't orient users within the product architecture until mid-scroll, and even then doesn't explain it.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="problem">
+    <div class="problem-header">
+      <span class="problem-num">Problem 4</span>
+      <span class="problem-title">Expert credentials are buried — a credibility asset treated like fine print</span>
+    </div>
+    <p style="font-size:14px; color:#444; margin-bottom:0;">The most credible claim on the Expert Assist homepage — "13 years average experience" — is rendered in 14px body text in a supporting section. No mention of credential types (CPA? EA? Tax Attorney?) appears above the fold. This leaves the biggest trust question in tax expert selection ("is this person actually qualified?") unanswered at first glance.</p>
+    <div class="evidence-row">
+      <div class="evidence-box">
+        <div class="evidence-label">Qual Evidence</div>
+        <div class="quote">"Experts may consist of someone with a GED or high school diploma rather than actual accountants or CPAs."</div>
+        <div class="quote">"Not experts at all." (Community forum refund request)</div>
+        <div class="quote">"Luck of the draw with difficulty getting actual experts on the phone." (User describing inconsistency)</div>
+      </div>
+      <div class="evidence-box">
+        <div class="evidence-label">Competitive Context</div>
+        <p>TaxAct makes expert credentials its primary trust mechanism: "CPAs, Enrolled Agents, or Tax Attorneys — 10+ years average experience — 100% U.S.-based." This appears as a dedicated section near the top of the page, not buried in body text. TurboTax has comparable (arguably stronger) expert credentials but doesn't surface them where they can do conversion work.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="problem">
+    <div class="problem-header">
+      <span class="problem-num">Problem 5</span>
+      <span class="problem-title">The post-CTA experience severs trust at the highest-stakes moment in the funnel</span>
+    </div>
+    <p style="font-size:14px; color:#444; margin-bottom:0;">Clicking "Start for free" — the primary conversion action on the page — drops users onto a generic Intuit account creation page ("Let's get you in") with no reference to Expert Assist, no "here's what happens next," and legal copy that references Mailchimp terms. The highest-stakes micro-moment in the conversion flow is emotionally and visually disconnected from everything the landing page just promised.</p>
+    <div class="evidence-row">
+      <div class="evidence-box">
+        <div class="evidence-label">Qual Evidence</div>
+        <p>No explicit quotes about the sign-up page disconnect (users likely don't surface this consciously) — but the Mailchimp terms appearance in a tax product is noted in forum discussions as eroding trust. The broader theme of "didn't know what I signed up for" suggests the sign-up flow isn't doing the work of confirming the decision.</p>
+      </div>
+      <div class="evidence-box">
+        <div class="evidence-label">Competitive Context</div>
+        <p>FreeTaxUSA's sign-up carries its "Pro Support" branding throughout. TaxAct maintains "Xpert Assist" context in its sign-up flow. H&R Block's sign-up explicitly confirms "Tax Pro Review" as the selected product at the top of the registration page. TurboTax's generic Intuit account page is the weakest post-CTA experience of the four.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Opportunities -->
+  <h2>Opportunities</h2>
+  <p style="color:#666; font-size:13px;">Refined from the Step 2 analysis and validated by research. Ranked by expected conversion impact.</p>
+
+  <div class="opportunity">
+    <div class="opp-header">
+      <span class="opp-rank">1</span>
+      <span class="opp-title">Rewrite the hero headline to address anxiety, not aspiration</span>
+    </div>
+    <div style="margin-bottom:10px;">
+      <span class="tag copy">Copy</span>
+      <span class="tag reward">Reward / Control</span>
+    </div>
+    <div class="opp-body">
+      "File confidently with experts by your side" is aspirational but doesn't resolve the user's first question in a high-anxiety category. The headline should lead with the safety net — what happens if something goes wrong — rather than the emotional outcome of a process that hasn't started yet. Tax categories respond significantly better to fear-resolution framing than aspiration framing. A rewrite like "A tax expert checks every line before you file — guaranteed" is more specific, more falsifiable, and speaks directly to the user's real concern.
+    </div>
+  </div>
+
+  <div class="opportunity">
+    <div class="opp-header">
+      <span class="opp-rank">2</span>
+      <span class="opp-title">Surface expert credentials and pricing in the hero section</span>
+    </div>
+    <div style="margin-bottom:10px;">
+      <span class="tag copy">Copy</span>
+      <span class="tag ux">Emphasis</span>
+      <span class="tag competitive">Competitive</span>
+    </div>
+    <div class="opp-body">
+      The two biggest questions users have before committing to an expert tax product — "Is this person actually qualified?" and "How much will this cost?" — are both unanswered above the fold. Expert credentials (CPA? EA? years of experience?) should appear as a visual proof point in or near the hero. A starting price or pricing anchor should appear on the page before any CTA. TaxAct does both and makes them a centerpiece; TurboTax buries the 13-year credential in body text and hides pricing in a collapsed FAQ.
+    </div>
+  </div>
+
+  <div class="opportunity">
+    <div class="opp-header">
+      <span class="opp-rank">3</span>
+      <span class="opp-title">Explain the product architecture before users encounter the upsell</span>
+    </div>
+    <div style="margin-bottom:10px;">
+      <span class="tag copy">Copy</span>
+      <span class="tag ux">Layout</span>
+    </div>
+    <div class="opp-body">
+      "Expert Assist" and "Expert Full Service" are fundamentally different products, but users arrive with no frame of reference and encounter the upsell mid-scroll with no context. A single orienting sentence in the hero section — "Do your taxes yourself with a live expert on standby. Or let an expert do it for you — see Expert Full Service" — would eliminate the largest source of tier confusion while paradoxically helping the upsell convert better (informed users who want Full Service will click through rather than being confused by it).
+    </div>
+  </div>
+
+  <div class="opportunity">
+    <div class="opp-header">
+      <span class="opp-rank">4</span>
+      <span class="opp-title">Bring the Lifetime Guarantee into the hero</span>
+    </div>
+    <div style="margin-bottom:10px;">
+      <span class="tag copy">Copy</span>
+      <span class="tag ux">Emphasis</span>
+    </div>
+    <div class="opp-body">
+      The Tax Return Lifetime Guarantee — the ability to file an amended return at any time if an error is found — is the most remarkable differentiator on this page. It directly addresses the user's deepest anxiety (permanent financial consequences) and no other tax software makes this claim with the same specificity. It's currently a small gold badge in the bottom third of the page. Even a brief reference in the hero ("File now. We'll fix it forever if anything's wrong.") would be more conversion-effective than the current guarantee section placement.
+    </div>
+  </div>
+
+  <div class="opportunity">
+    <div class="opp-header">
+      <span class="opp-rank">5</span>
+      <span class="opp-title">Add Expert Assist continuity to the sign-up page</span>
+    </div>
+    <div style="margin-bottom:10px;">
+      <span class="tag copy">Copy</span>
+      <span class="tag reward">Reward / Certainty</span>
+    </div>
+    <div class="opp-body">
+      The sign-up page ("Let's get you in") has no Expert Assist context, no reassurance about what the user is signing up for, and Mailchimp legal copy that undermines trust. At minimum, the post-CTA page needs: the Expert Assist product name and one-line description, a "here's what happens next" line, and removal or explanation of the Mailchimp terms reference. This is the easiest fix on the list and has the highest marginal impact per engineering hour — it's a copy and minor template change.
+    </div>
+  </div>
+
+  <!-- Requirements -->
+  <h2>Requirements</h2>
+
+  <table class="req-table">
+    <thead>
+      <tr>
+        <th style="width:70px;">Priority</th>
+        <th style="width:260px;">Requirement</th>
+        <th>Rationale</th>
+        <th style="width:160px;">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="priority p0">P0</span></td>
+        <td>Rewrite hero headline to lead with outcome/safety rather than aspiration. Proposed direction: "A tax expert checks every line before you file — guaranteed."</td>
+        <td>Qual research confirms anxiety is the dominant user state. Fear-resolution copy outperforms aspiration in high-stakes financial categories. Current headline fails the Falsifiability Test ("confidently" is unverifiable).</td>
+        <td>A/B test against current headline. Primary metric: sign-up conversion rate.</td>
+      </tr>
+      <tr>
+        <td><span class="priority p0">P0</span></td>
+        <td>Add an expert credential callout in or immediately below the hero. Must include: credential type (CPA / Enrolled Agent / Tax Attorney), average years of experience, U.S.-based confirmation.</td>
+        <td>Expert quality is the #1 user concern per forum research. TaxAct makes credentials a page centerpiece and is gaining on trust metrics. TurboTax's 13-year average experience credential is buried in body text where it can't convert.</td>
+        <td>Can be a visual "trust strip" beneath the hero CTAs. Coordinate with credentialing/legal on approved language.</td>
+      </tr>
+      <tr>
+        <td><span class="priority p0">P0</span></td>
+        <td>Add a pricing anchor to the Expert Assist page — at minimum "Starting at $X" — visible before any CTA.</td>
+        <td>Pricing opacity is the most-cited complaint theme in qual research. Competitors (TaxAct at $45, FreeTaxUSA at $64.99) show prices upfront. Hiding pricing generates surprise and refund requests downstream.</td>
+        <td>Coordinate with pricing/product on the appropriate anchor price. Even a range ("$X–$X depending on your situation") is better than no number.</td>
+      </tr>
+      <tr>
+        <td><span class="priority p0">P0</span></td>
+        <td>Add Expert Assist context to the post-CTA sign-up page. Must include: product name + 1-line description, "what happens next" copy, and removal or explanation of Mailchimp terms reference.</td>
+        <td>The sign-up page is a complete brand and context break at the highest-stakes moment in the funnel. Mailchimp terms actively undermine trust in a tax filing context.</td>
+        <td>Likely requires Intuit design system coordination. Minimum viable version is a banner/header carrying Expert Assist branding.</td>
+      </tr>
+      <tr>
+        <td><span class="priority p1">P1</span></td>
+        <td>Add an orienting product architecture statement early on the page (above or near the Expert Full Service upsell) explaining the difference between Expert Assist and Expert Full Service.</td>
+        <td>Tier confusion is the second-most-cited frustration theme in qual research. Users being trapped in the wrong tier generate refund requests and churn. A clear orientation reduces wrong-tier enrollment and helps users self-select correctly.</td>
+        <td>One sentence is enough: "Do your taxes yourself with a live expert on standby, or let an expert handle everything — see Expert Full Service." Don't over-engineer this.</td>
+      </tr>
+      <tr>
+        <td><span class="priority p1">P1</span></td>
+        <td>Move the Lifetime Guarantee into the hero section or at minimum into the above-fold trust area. Rewrite from badge to copy: "If we make an error, we'll fix your return — free — no matter how long ago you filed."</td>
+        <td>This is TurboTax's single most defensible differentiator and it's sitting at the bottom of the page in illegible stamp art. Competitors don't match this claim. The anxiety this guarantee resolves ("permanent financial consequences") is exactly what the primary audience is afraid of.</td>
+        <td>Confirm current guarantee scope with legal before promoting above fold. If the guarantee has caveats, make those accessible via tooltip/link rather than burying them in the badge.</td>
+      </tr>
+      <tr>
+        <td><span class="priority p1">P1</span></td>
+        <td>Redesign the trust section headline from "You can trust our experts" to lead with the specific credential claim: "13 years average experience. Always current on tax law." Move the assertion ("You can trust our experts") to a subhead or remove it.</td>
+        <td>Asserting trust doesn't build it. The specific claim — 13 years average experience — is concrete, falsifiable, and meaningful. It passes every copy test the current headline fails. The subhead has the right content; swap the hierarchy.</td>
+        <td>Copy-only change. No design changes required. Can ship in same sprint as hero rewrite.</td>
+      </tr>
+      <tr>
+        <td><span class="priority p1">P1</span></td>
+        <td>Rewrite the "Unlimited personalized help" section headline to surface the differentiating claim: "Live expert help on nights and weekends — even during tax season."</td>
+        <td>"Personalized" is a marketing buzzword that appears on every competitor's page. "Nights and weekends during tax season" is specific, verifiable, and directly relevant to the user's worry about access. The current subhead has the right copy — promote it.</td>
+        <td>Copy-only change. Can be part of the same homepage copy pass as other P1 changes.</td>
+      </tr>
+      <tr>
+        <td><span class="priority p2">P2</span></td>
+        <td>Add a tier-selection quiz or routing tool early in the page (above the fold or as a primary interactive element) to help users identify whether they need Expert Assist, Expert Full Service, or DIY.</td>
+        <td>Qual research shows significant wrong-tier enrollment ("I didn't want or choose this upcharge"). A 2-3 question routing tool would reduce mismatched enrollments and the support/refund load they generate.</td>
+        <td>Requires engineering investment. Consider a simple 3-question branching path: "How complex is your tax situation?" → "Do you want to do it yourself or have it done for you?" → "Do you have time pressure?" Deprioritized for this cycle; design for it now.</td>
+      </tr>
+      <tr>
+        <td><span class="priority p2">P2</span></td>
+        <td>Redesign the review section to increase social proof weight: increase star rating and review count visual size, add reviewer photos or profile indicators, pull stronger quotes as section headers.</td>
+        <td>The current review cards use corporate formatting (card + header + byline) that reduces authenticity. The volume claim (24,300 reviews) is displayed in parenthetical body text. FreeTaxUSA and TaxAct both treat their review counts as headline-level proof points.</td>
+        <td>Requires design work and potentially new review API integration for photos. Keep for Q2 homepage refresh.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Competitive Summary -->
+  <h2>Competitive Snapshot</h2>
+  <p style="font-size:13px; color:#666; margin-bottom:0;">How the three direct competitors handle the specific opportunities identified above, on their expert-assist landing pages as of March 2026.</p>
+
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>TurboTax Expert Assist</th>
+        <th>TaxAct Xpert Assist</th>
+        <th>H&R Block Tax Pro Review</th>
+        <th>FreeTaxUSA Pro Support</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Hero framing</strong></td>
+        <td>Aspiration ("file confidently")</td>
+        <td class="better">Peace of mind ("one goal: peace of mind")</td>
+        <td class="better">Error prevention ("spot errors, omissions")</td>
+        <td>Affordability + access</td>
+      </tr>
+      <tr>
+        <td><strong>Price visible on page</strong></td>
+        <td class="worse">No (hidden in FAQ)</td>
+        <td class="better">Yes ("Starting at $45")</td>
+        <td class="better">Free promo (friction removed)</td>
+        <td class="better">Yes ("$64.99")</td>
+      </tr>
+      <tr>
+        <td><strong>Expert credentials</strong></td>
+        <td class="worse">"13 years avg experience" in body text only</td>
+        <td class="better">CPAs / EAs / Tax Attorneys, 10+ yrs, 100% U.S. — above fold</td>
+        <td>Minimal detail</td>
+        <td>Minimal detail</td>
+      </tr>
+      <tr>
+        <td><strong>Tier clarity</strong></td>
+        <td class="worse">Not explained; upsell appears without context</td>
+        <td class="better">"Two ways to file" — clearly differentiated on page</td>
+        <td class="better">"DIY + Review" is the product (no tier confusion)</td>
+        <td class="better">Feature matrix (Deluxe vs. Pro) on page</td>
+      </tr>
+      <tr>
+        <td><strong>Post-CTA experience</strong></td>
+        <td class="worse">Generic Intuit sign-up; no Expert Assist context</td>
+        <td class="better">Xpert Assist branding maintained through sign-up</td>
+        <td class="better">Tax Pro Review product confirmed in sign-up</td>
+        <td class="better">Pro Support branding carried through</td>
+      </tr>
+      <tr>
+        <td><strong>Guarantee prominence</strong></td>
+        <td class="worse">Lifetime Guarantee buried at bottom as small badge</td>
+        <td>Guarantees visible but not prominent</td>
+        <td class="better">3 guarantees on hero section</td>
+        <td>Standard accuracy + refund guarantees</td>
+      </tr>
+      <tr>
+        <td><strong>Brand / trust scale</strong></td>
+        <td class="better">Market leader; highest brand recognition</td>
+        <td>Growing; strong on credentials</td>
+        <td class="better">Physical offices signal permanence and trust</td>
+        <td>24-year track record used as trust signal</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Open Questions -->
+  <h2>Open Questions</h2>
+
+  <div class="question">
+    <div class="q-text"><strong>What credential types are currently in the Expert Assist expert pool?</strong> The page currently says "13 years average experience" but doesn't specify CPAs vs. EAs vs. other credential types. This determines how aggressively we can market credentials and what language is legally approved. Blocking for the credentials P0 requirement.</div>
+    <span class="q-owner blocking">Blocking · Legal / HR</span>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><strong>What is the approved pricing anchor for Expert Assist?</strong> The P0 requirement to add a price to the landing page requires alignment on what price to show. Does Expert Assist have a flat starting price or does it vary by edition? Should the anchor be the full-price Expert Assist add-on cost, or the total with base software?</div>
+    <span class="q-owner blocking">Blocking · Pricing / Product</span>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><strong>What does the Lifetime Guarantee actually cover, and are there caveats?</strong> Before promoting the Lifetime Guarantee above the fold, we need the exact legal scope. If there are meaningful limitations (e.g., only covers errors made by TurboTax, not user input errors), we need to know how to disclose them without undermining the claim.</div>
+    <span class="q-owner blocking">Blocking · Legal</span>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><strong>What does the Intuit sign-up page template support?</strong> The post-CTA page is likely a shared Intuit account creation template. Understand what's customizable (header, product context banner, legal copy) vs. locked before scoping the P0 sign-up fix. Even a product-branded header may require a template exception.</div>
+    <span class="q-owner">Non-blocking · Engineering / Design</span>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><strong>Do we have conversion funnel data by page section?</strong> Scroll depth, CTA click attribution, and drop-off by screen section would allow us to precisely prioritize which P0 / P1 changes to run first and set meaningful A/B test baselines. This data should inform the order of execution even if it doesn't change the direction.</div>
+    <span class="q-owner">Non-blocking · Analytics</span>
+  </div>
+
+  <div class="question">
+    <div class="q-text"><strong>Why do Mailchimp terms appear in the Expert Assist sign-up flow?</strong> If this is a standard Intuit account creation page that's shared across products, it may pull in standard Intuit legal terms (including Mailchimp, which Intuit acquired). Determine whether this can be scoped to tax-relevant terms only or contextualized so it doesn't read as alarming.</div>
+    <span class="q-owner">Non-blocking · Legal / Engineering</span>
+  </div>
+
+  <!-- Footer -->
+  <div class="doc-footer">
+    <p>Analysis conducted March 21, 2026. Qual sources: TurboTax Community Forums, Reddit (r/personalfinance, r/tax), NerdWallet, SuperMoney, Bogleheads. Competitive sources: taxact.com/tax-xpert-assist, hrblock.com/online-tax-filing/tax-pro-review, freetaxusa.com/pro. Product recording: CleanShot 2026-03-21.</p>
+  </div>
+
+</div>
+</body>
+</html>

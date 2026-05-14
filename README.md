@@ -22,6 +22,8 @@ Skills for product discovery, strategy, and research.
 | `stake-holder-jtbd` | Stakeholder comms mapped to what each audience actually needs |
 | `qual-research` | Qualitative research synthesis |
 | `quant-analysis` | Statistical analysis framework |
+| `spark` | Generate and rank founder-grade startup ideas — 5 founder lenses, 12-criteria scorecard |
+| `problem` | Find the right customer problem — named user, real outcome, status quo evidence, switching forces, narrowest wedge |
 
 ### [`/frameworks`](./frameworks)
 Mental models and thinking tools. Not product-specific — for decisions, writing, and influence.
@@ -52,6 +54,8 @@ Behavioral design frameworks and visual review skills.
 | `font-readability` | 33-criteria font readability assessment across 6 domains |
 | `copy-analyzer` | Copy analysis across headlines, CTAs, microcopy, error states |
 | `ux-review-clear` | C.L.E.A.R. framework UX + copy review |
+| `dont-make-me-think` | 13-criteria Krug usability audit — self-evidence, scannability, trunk test, conventions |
+| `first-impression` | Visceral gut-reaction capture (fixation order, emotion grid, brand archetype) before analytical critique |
 
 ### [`/research`](./research)
 Research pipeline skills for sourcing, synthesizing, and building.

@@ -34,6 +34,8 @@ Mental models and thinking tools. Not product-specific — for decisions, writin
 | `munger-philosophy` | 13-criteria Munger scorecard for decisions and business analysis |
 | `influence` | 12-criteria influence scorecard (Cialdini, Voss, Kahneman, Aristotle, HBS) |
 | `article-craft` | Traffic light analysis for article drafts across 5 dimensions |
+| `writing-clearly` | 14-criteria writing audit (Strunk, Zinsser, Pinker, Orwell + McKinsey/Amazon/Stripe modes) — rewrites the worst sections with rule citations |
+| `llm-council` | Run any decision through 5 AI advisors who peer-review each other and synthesize a verdict (Karpathy's LLM Council methodology) |
 | `git-sync` | Stage, commit, and push all changes to origin main |
 
 ### [`/design`](./design)
@@ -46,6 +48,7 @@ Behavioral design frameworks and visual review skills.
 | `psych-journey` | Map a user flow as a Motivation × Ability Psych curve |
 | `15-star-experience` | Build backwards from the absurd ideal to diagnose what's possible |
 | `don-norman-review` | DOET framework design critique with annotated screenshots |
+| `designer-audit` | 9-phase visual design audit — Design Score + AI Slop Score with ranked findings |
 | `font-readability` | 33-criteria font readability assessment across 6 domains |
 | `copy-analyzer` | Copy analysis across headlines, CTAs, microcopy, error states |
 | `ux-review-clear` | C.L.E.A.R. framework UX + copy review |
